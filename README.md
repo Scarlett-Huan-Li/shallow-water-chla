@@ -94,7 +94,10 @@ The analysis includes:
 
 ## 📈 Key Findings
 
-[To be added based on your manuscript results]
+1. **Spatial asynchrony across lake basins exists for the intra- and inter-annual change of Chl-a.**
+2. **The littoral/pelagic ratio of the maximum optical Chl-a remains between 1.3 and 2.8.**
+3. **Peak Chl-a timing advanced by 5 days/decade, with start of season advancing by 10 days.**
+4. **Bloom intensity decreased in western basins but remained stable in eastern regions.**
 
 ## 🤝 Contributing
 
@@ -104,15 +107,13 @@ This repository is associated with a scientific manuscript. For questions or col
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📚 Citation
-
-If you use this code or data in your research, please cite:
-
-[Add your manuscript citation here]
-
 ## 🔗 Related Publications
 
-[Add links to related publications or datasets]
+- **Li, H., Somogyi, B., Chen, X., Luo, Z., Blix, K., Wu, S., Duan, Z. and Tóth, V.R.** (2025) Leveraging Landsat and Google Earth Engine for long-term chlorophyll-a monitoring: A case study of Lake Balaton's water quality. *Ecological Informatics* 90, 103245.
+
+- **Li, H., Somogyi, B. and Tóth, V.** (2024) Exploring spatiotemporal features of surface water temperature for Lake Balaton in the 21st century based on Google Earth Engine. *Journal of Hydrology* 640, 131672.
+
+- **Li, H., Sun, J., Zhou, Q., Sojka, M., Ptak, M., Luo, Y., Wu, S., Zhu, S. and Tóth, V.R.** (2024) 150-year daily data (1870–2021) in lakes and rivers reveals intensifying surface water warming and heatwaves in the Pannonian Ecoregion (Hungary). *Journal of Hydrology: Regional Studies* 56, 101985.
 
 ---
 
