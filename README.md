@@ -1,11 +1,11 @@
-# Balaton Chlorophyll-a Phenology Analysis
+# Shallow Water Chlorophyll-a Analysis
 
 This repository contains the code and data for analyzing chlorophyll-a phenology in Lake Balaton, Hungary, based on Landsat satellite data from 1984-2024.
 
 ## 📁 Repository Structure
 
 ```
-balaton-chla-phenology/
+shallow-water-chla/
 ├── README.md                 # This file
 ├── requirements.txt          # Python dependencies
 ├── run_all_analyses.py       # Script to run all analyses
@@ -33,8 +33,8 @@ balaton-chla-phenology/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/[YOUR_USERNAME]/balaton-chla-phenology.git
-cd balaton-chla-phenology
+git clone https://github.com/Scarlett-Huan-Li/shallow-water-chla.git
+cd shallow-water-chla
 ```
 
 2. Install required packages:
@@ -117,4 +117,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Note**: This repository contains the complete reproducible analysis for the manuscript "Chlorophyll-a Phenology in Lake Balaton: A Four-Decade Analysis Using Landsat Data" (or your actual title). 
+**Note**: This repository contains the complete reproducible analysis for the manuscript "Shallow Water Chlorophyll-a Analysis: A Four-Decade Analysis Using Landsat Data". 
