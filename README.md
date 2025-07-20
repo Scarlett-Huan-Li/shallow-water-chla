@@ -120,4 +120,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Note**: This repository contains the complete reproducible analysis for the manuscript "Shallow Water Chlorophyll-a Analysis: A Four-Decade Analysis Using Landsat Data". 
+**Note**: This repository contains the complete reproducible analysis for the manuscript "Satellite-based Monitoring Reveals Climate-driven Phenological Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics: A Four-Decade Analysis". 
