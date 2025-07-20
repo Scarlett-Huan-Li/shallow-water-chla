@@ -15,6 +15,7 @@ shallow-water-chla/
 ├── src/                      # Analysis scripts
 │   ├── Phenology_Tab1_Fig9.py
 │   ├── MonthlyCenterlineComparison_Fig3.py
+│   ├── SpatioTemporalAsynchrony_Fig4.py
 │   ├── MonthlyCenterlineFitting_FigS4_Fig5.py
 │   ├── SouthNorthPelagicRatio_Fig6.py
 │   └── SouthNorthPelagicComparison_Fig7.py
@@ -57,6 +58,8 @@ Each script in the `src/` directory generates specific figures for the manuscrip
   - Output: `Phenology_Tab1_Fig9.png`
 - **MonthlyCenterlineComparison_Fig3.py**: Creates monthly centerline comparison (Figure 3)
   - Output: `MonthlyCenterlineComparison_Fig3.png`
+- **SpatioTemporalAsynchrony_Fig4.py**: Analyzes spatiotemporal asynchrony patterns (Figure 4)
+  - Output: `SpatioTemporalAsynchrony_Fig4.png`
 - **MonthlyCenterlineFitting_FigS4_Fig5.py**: Performs curve fitting analysis (Figure 5) and creates boxplots (Figure S4)
   - Output: `MonthlyCenterlineFitting_Fig5.png` and `MonthlyCenterlineFitting_FigS4.png`
 - **SouthNorthPelagicRatio_Fig6.py**: Analyzes south-north pelagic ratios (Figure 6)

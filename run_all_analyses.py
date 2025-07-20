@@ -72,6 +72,7 @@ def main():
     scripts = [
         ("Phenology_Tab1_Fig9.py", "Phenology analysis and Table 1, Figure 9"),
         ("MonthlyCenterlineComparison_Fig3.py", "Monthly centerline comparison (Figure 3)"),
+        ("SpatioTemporalAsynchrony_Fig4.py", "Spatiotemporal asynchrony analysis (Figure 4)"),
         ("MonthlyCenterlineFitting_FigS4_Fig5.py", "Curve fitting analysis (Figure 5) and boxplots (Figure S4)"),
         ("SouthNorthPelagicRatio_Fig6.py", "South-north pelagic ratios (Figure 6)"),
         ("SouthNorthPelagicComparison_Fig7.py", "South-north pelagic comparison (Figure 7)")
