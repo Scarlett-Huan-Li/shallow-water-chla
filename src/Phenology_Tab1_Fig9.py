@@ -1,3 +1,19 @@
+"""
+Phenology Analysis: Peak DOY Temporal Trend Testing
+==================================================
+
+This script performs statistical analysis of peak Day of Year (DOY) trends across four decades
+(1984-2023) for chlorophyll-a concentration in Lake Balaton. The analysis includes:
+
+1. Data preprocessing and outlier correction
+2. Standard linear regression (using decade means)
+3. Weighted linear regression (using individual measurements with uncertainty)
+4. Mann-Kendall test with Sen's slope (non-parametric)
+
+The script is designed for scientific replication and includes clear documentation
+of all statistical methods and assumptions.
+"""
+
 import pandas as pd
 from scipy.interpolate import make_interp_spline,CubicSpline,interp1d
 import numpy as np
@@ -33,11 +49,8 @@ conditions = [df['date'].dt.year < 1995,
               (df['date'].dt.year > 2004) & (df['date'].dt.year < 2015),
               (df['date'].dt.year > 2014) & (df['date'].dt.year < 2024)]
 
-# Create a 2x2 grid of subplots
-fig, axs = plt.subplots(2, 2, figsize=(10, 6))
-axs = axs.flatten()  # Flatten the array of axes to make it easier to loop over
-
-results = []  # Collect results for summary plots,'Zala'
+# Collect results for summary plots
+results = []
 for i, condition in enumerate(conditions):
     print("//////////////////////////{}".format(i+1))
     df_filtered = df[condition]
@@ -87,7 +100,7 @@ for i, condition in enumerate(conditions):
         # --- Compute AUC (area under curve from SOS to end of October) ---
         if sos is not None:
             auc_mask = (data_may_oct['doy'] >= sos) & (data_may_oct['doy'] <= 304)
-            auc = np.trapz(data_may_oct[auc_mask]['chla_avg'], data_may_oct[auc_mask]['doy'])
+            auc = np.trapezoid(data_may_oct[auc_mask]['chla_avg'], data_may_oct[auc_mask]['doy'])
         else:
             auc = None
 
@@ -126,21 +139,206 @@ for i, condition in enumerate(conditions):
 import pandas as pd
 results_df = pd.DataFrame(results)
 
-# Calculate and print mean SOS values for each decade
-print("\n=== Mean SOS Values by Decade ===")
-for decade in sorted(results_df['decade'].unique()):
-    decade_data = results_df[results_df['decade'] == decade]['sos'].dropna()
-    if not decade_data.empty:
-        mean_sos = decade_data.mean()
-        std_sos = decade_data.std()
-        decade_label = ['1984-1994', '1995-2004', '2005-2014', '2015-2023'][decade-1]
-        print(f"Decade {decade} ({decade_label}): Mean SOS = {mean_sos:.1f} ± {std_sos:.1f} DOY")
-    else:
-        decade_label = ['1984-1994', '1995-2004', '2005-2014', '2015-2023'][decade-1]
-        print(f"Decade {decade} ({decade_label}): No SOS data available")
+# Calculate mean SOS values for each decade (for internal use)
 
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
+# ===== STATISTICAL ANALYSIS: TEMPORAL TREND TESTING =====
+print("\n" + "="*60)
+print("STATISTICAL ANALYSIS: TEMPORAL TREND TESTING FOR PEAK DOY")
+print("="*60)
+
+from scipy import stats
+from scipy.stats import kendalltau
+
+# ============================================== DATA PREPARATION ==============================================
+# Extract the actual peak DOY values from the results
+decade_labels = ['1984-1994', '1995-2004', '2005-2014', '2015-2023']
+
+# Replace the outlier: Station III (Zanka) value 279 in decade 4 (2015-2023) with in-situ value 246±3.2
+results_df_filtered = results_df.copy()
+outlier_mask = (results_df_filtered['basin'] == 'Zanka') & (results_df_filtered['decade'] == 4) & (results_df_filtered['peak_doy'] == 279)
+results_df_filtered.loc[outlier_mask, 'peak_doy'] = 246
+results_df_filtered.loc[outlier_mask, 'std2'] = 3.2
+
+# Prepare decade-wise statistics for analysis
+decade_groups = []
+for decade in sorted(results_df_filtered['decade'].unique()):
+    decade_data = results_df_filtered[results_df_filtered['decade'] == decade]['peak_doy'].dropna()
+    decade_groups.append(decade_data.values)
+
+# ============================================== TREND ANALYSIS METHODS ==============================================
+
+# --- METHOD 1: STANDARD LINEAR REGRESSION ---
+
+# Calculate mean DOY for each decade (using filtered data)
+mean_doy_values = []
+years = [1989, 1999, 2009, 2019]  # Mid-years of each decade
+
+for decade in sorted(results_df_filtered['decade'].unique()):
+    decade_data = results_df_filtered[results_df_filtered['decade'] == decade]['peak_doy'].dropna()
+    if not decade_data.empty:
+        mean_doy = decade_data.mean()
+        mean_doy_values.append(mean_doy)
+
+# Standard (unweighted) regression
+if len(mean_doy_values) == len(years):
+    print(f"--- METHOD 1: STANDARD LINEAR REGRESSION ---")
+    slope, intercept, r_value, p_value_reg, std_err = stats.linregress(years, mean_doy_values)
+    
+    # print(f"Linear regression: Peak DOY = {intercept:.1f} + {slope:.3f} × Year")
+    print(f"Slope: {slope:.3f} DOY/year")
+    print(f"R^2: {r_value**2:.3f}")
+    print(f"p-value: {p_value_reg:.6f}")
+    
+    if p_value_reg < 0.05:
+        trend_direction = "advancing" if slope < 0 else "delaying"
+        print(f"Result: SIGNIFICANT temporal trend (p < 0.05)")
+        print(f"Peak DOY is {trend_direction} by {abs(slope):.2f} days per year")
+    else:
+        print(f"Result: NO significant temporal trend (p ≥ 0.05)")
+
+# --- METHOD 2: WEIGHTED LINEAR REGRESSION ---
+
+# Prepare data for weighted regression using std2 as uncertainty
+all_years = []
+all_doys = []
+all_weights = []
+
+for _, row in results_df_filtered.iterrows():
+    decade = row['decade']
+    doy = row['peak_doy']
+    std2 = row['std2']
+    
+    if pd.notna(doy) and pd.notna(std2):
+        # Use mid-year of each decade
+        mid_year = [1989, 1999, 2009, 2019][decade-1]
+        all_years.append(mid_year)
+        all_doys.append(doy)
+        # Weight is inverse of variance (1/std2^2)
+        all_weights.append(1.0 / (std2**2))
+
+# Calculate mean DOY for each decade (using filtered data) for comparison
+mean_doy_values = []
+years = [1989, 1999, 2009, 2019]  # Mid-years of each decade
+
+for decade in sorted(results_df_filtered['decade'].unique()):
+    decade_data = results_df_filtered[results_df_filtered['decade'] == decade]['peak_doy'].dropna()
+    if not decade_data.empty:
+        mean_doy = decade_data.mean()
+        mean_doy_values.append(mean_doy)
+
+# Standard (unweighted) regression for comparison
+if len(mean_doy_values) == len(years):
+    slope, intercept, r_value, p_value_reg, std_err = stats.linregress(years, mean_doy_values)
+    
+    # print(f"Standard linear regression: Peak DOY = {intercept:.1f} + {slope:.3f} × Year")
+    print(f"Slope: {slope:.3f} DOY/year")
+    print(f"R^2: {r_value**2:.3f}")
+    print(f"p-value: {p_value_reg:.6f}")
+    
+    if p_value_reg < 0.05:
+        trend_direction = "advancing" if slope < 0 else "delaying"
+        print(f"Result: SIGNIFICANT temporal trend (p < 0.05)")
+        print(f"Peak DOY is {trend_direction} by {abs(slope):.2f} days per year")
+    else:
+        print(f"Result: NO significant temporal trend (p ≥ 0.05)")
+
+# Weighted regression using all individual measurements
+if len(all_years) >= 4:
+    print(f"\n--- METHOD 2: WEIGHTED LINEAR REGRESSION (using individual measurements with uncertainty) ---")
+    
+    # Perform weighted least squares regression
+    from scipy.optimize import curve_fit
+    
+    def linear_func(x, a, b):
+        return a * x + b
+    
+    # Convert to numpy arrays
+    years_array = np.array(all_years)
+    doys_array = np.array(all_doys)
+    weights_array = np.array(all_weights)
+    
+    # Perform weighted regression
+    popt, pcov = curve_fit(linear_func, years_array, doys_array, sigma=1/np.sqrt(weights_array), absolute_sigma=True)
+    slope_weighted, intercept_weighted = popt
+    
+    # Calculate R-squared for weighted regression
+    y_pred = linear_func(years_array, slope_weighted, intercept_weighted)
+    ss_res = np.sum(weights_array * (doys_array - y_pred)**2)
+    ss_tot = np.sum(weights_array * (doys_array - np.average(doys_array, weights=weights_array))**2)
+    r_squared_weighted = 1 - (ss_res / ss_tot)
+    
+    # Calculate p-value using t-test
+    n = len(all_years)
+    dof = n - 2
+    slope_std = np.sqrt(pcov[0, 0])
+    t_stat = slope_weighted / slope_std
+    p_value_weighted = 2 * (1 - stats.t.cdf(abs(t_stat), dof))
+    
+    # print(f"Weighted linear regression: Peak DOY = {intercept_weighted:.1f} + {slope_weighted:.3f} × Year")
+    print(f"Slope: {slope_weighted:.3f} DOY/year")
+    print(f"R^2: {r_squared_weighted:.3f}")
+    print(f"p-value: {p_value_weighted:.6f}")
+    print(f"Number of measurements: {n}")
+    
+    if p_value_weighted < 0.05:
+        trend_direction = "advancing" if slope_weighted < 0 else "delaying"
+        print(f"Result: SIGNIFICANT temporal trend (p < 0.05)")
+        print(f"Peak DOY is {trend_direction} by {abs(slope_weighted):.2f} days per year")
+    else:
+        print(f"Result: NO significant temporal trend (p ≥ 0.05)")
+    
+
+# --- METHOD 3: MANN-KENDALL TEST WITH SEN'S SLOPE ---
+
+if len(mean_doy_values) == len(years):
+    print(f"\n--- METHOD 3: MANN-KENDALL TEST WITH SEN'S SLOPE ---")
+    # Mann-Kendall test for trend significance
+    tau, p_mk = kendalltau(years, mean_doy_values)
+    
+    # Calculate Sen's slope estimator (non-parametric slope)
+    def sens_slope(x, y):
+        """
+        Calculate Sen's slope estimator for trend analysis.
+        This is the median of all pairwise slopes, making it robust to outliers.
+        """
+        n = len(x)
+        slopes = []
+        for i in range(n):
+            for j in range(i+1, n):
+                if x[j] != x[i]:  # Avoid division by zero
+                    slope = (y[j] - y[i]) / (x[j] - x[i])
+                    slopes.append(slope)
+        return np.median(slopes)
+    
+    sen_slope = sens_slope(years, mean_doy_values)
+    
+    print(f"Mann-Kendall tau: {tau:.3f}")
+    print(f"p-value: {p_mk:.6f}")
+    print(f"Sen's slope: {sen_slope:.3f} DOY/year")
+    
+    # Check significance at different levels
+    sig_5pct = p_mk < 0.05
+    sig_10pct = p_mk < 0.10
+    
+    print(f"Significance levels:")
+    print(f"  5% level (p < 0.05): {'SIGNIFICANT' if sig_5pct else 'NOT significant'} (p = {p_mk:.6f})")
+    print(f"  10% level (p < 0.10): {'SIGNIFICANT' if sig_10pct else 'NOT significant'} (p = {p_mk:.6f})")
+    
+    if sig_5pct:
+        trend_direction = "advancing" if sen_slope < 0 else "delaying"
+        print(f"Result: SIGNIFICANT temporal trend at 5% level (p < 0.05)")
+        print(f"Peak DOY shows {trend_direction} trend by {abs(sen_slope):.3f} DOY/year")
+    elif sig_10pct:
+        trend_direction = "advancing" if sen_slope < 0 else "delaying"
+        print(f"Result: SIGNIFICANT temporal trend at 10% level (p < 0.10)")
+        print(f"Peak DOY shows {trend_direction} trend by {abs(sen_slope):.3f} DOY/year")
+    else:
+        print(f"Result: NO significant temporal trend (p ≥ 0.10)")
+        print(f"Sen's slope: {sen_slope:.3f} DOY/year (not significant)")
+
+# ============================================== SUMMARY PLOT ==============================================
+
+
 basin_labels = ['I', 'II', 'III', 'IV-1', 'IV-2']
 basins = ['Keszthely','Szigliget','Zanka','Tihany','Bfuzfo']
 decades = sorted(results_df['decade'].unique())
@@ -243,6 +441,7 @@ plt.tight_layout()
 plt.subplots_adjust(wspace=0.15)
 
 # Save the figure
-plt.savefig(os.path.join(figuresPath, 'Phenology_Tab1_Fig9.png'), 
-            dpi=300, bbox_inches='tight', facecolor='white')
-plt.show()
+figure_path = os.path.join(figuresPath, 'Phenology_Tab1_Fig9.png')
+plt.savefig(figure_path, dpi=300, bbox_inches='tight', facecolor='white')
+print(f"\nFigure saved to: {figure_path}")
+plt.show()  # Display the phenology plot
