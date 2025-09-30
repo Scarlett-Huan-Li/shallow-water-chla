@@ -105,6 +105,16 @@ python Phenology_Tab1_Fig9.py
 - **Content**: Distance measurements and pelagic/coastal classifications
 - **Columns**: date, distance, pelagic, north_coast, south_coast, month, year
 
+### Transectional Data Files (Transection_I.csv to Transection_IV-2.csv)
+- **Source**: Field measurements and bathymetric surveys
+- **Content**: Transectional profiles of chlorophyll-a concentration and water depth across Lake Balaton
+- **Structure**: Five transects (I, II, III, IV-1, IV-2) running from south to north
+- **Columns**: 
+  - `distance`: Distance from south to north (meters, converted to kilometers in analysis)
+  - `depth`: Water depth (meters, negative values)
+  - `chla`: Chlorophyll-a concentration (μg/L)
+- **Purpose**: Used for generating Figure 8 showing spatial patterns of Chl-a and bathymetry relationships
+
 ## 🔬 Analysis Methods
 
 The analysis includes:
@@ -124,34 +134,6 @@ The analysis includes:
 2. **The littoral/pelagic ratio of the maximum optical Chl-a remains between 1.3 and 2.8.**
 3. **Peak Chl-a timing advanced by 5 days/decade, with start of season advancing by 10 days.**
 4. **Bloom intensity decreased in western basins but remained stable in eastern regions.**
-5. **Statistical Analysis Results**:
-   - Peak DOY shows significant advancing trend: -0.49 days/year (standard regression, p < 0.05)
-   - Weighted regression confirms trend: -0.19 days/year (p < 0.05) accounting for measurement uncertainty
-   - Mann-Kendall test significant at 10% level (p = 0.083) with Sen's slope of -0.51 days/year
-
-## 🛠️ Code Quality & Structure
-
-The repository features well-organized, modular code designed for scientific reproducibility:
-
-### **Phenology Analysis Script (Phenology_Tab1_Fig9.py)**
-- **Modular Design**: Organized into clear functions (data loading, processing, statistical analysis, plotting)
-- **Clean Structure**: All imports at the top, logical flow from data → analysis → visualization
-- **Documentation**: Comprehensive docstrings and comments for scientific replication
-- **Statistical Rigor**: Multiple statistical methods with proper uncertainty quantification
-- **Error Handling**: Robust data processing with outlier detection and correction
-
-### **Code Organization**
-- **Configuration Section**: All parameters clearly defined at the top
-- **Function-based Architecture**: Each major operation is a separate, testable function
-- **Professional Standards**: Follows Python best practices and scientific coding conventions
-- **Reproducibility**: Clear execution flow with `if __name__ == "__main__":` pattern
-
-### **Single Curve Fitting Script (MonthlyCenterlineFitting_singleMonth_Fig5.py)**
-- **Refactored Design**: Clean, modular structure aligned with project conventions
-- **Multiple Models**: Implements Linear, Logarithmic, Polynomial (degree 2), and Exponential fitting
-- **Statistical Metrics**: Calculates R² and RMSE for model comparison
-- **Professional Output**: High-quality figure generation with proper equation formatting
-- **Project Integration**: Uses consistent file paths, styling, and documentation standards
 
 ## 🤝 Contributing
 
