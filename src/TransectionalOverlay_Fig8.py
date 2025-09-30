@@ -21,7 +21,7 @@ import os
 # ============================================== CONFIGURATION ==============================================
 plt.rcParams['savefig.dpi'] = 300
 
-# Set global font properties for Nature style
+# Set global font properties
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = ['Arial', 'Helvetica', 'DejaVu Sans']
 plt.rcParams['font.size'] = 14
@@ -81,10 +81,10 @@ def create_transectional_figure(transections):
     # Create figure with subplots - optimized for visibility
     fig, axes = plt.subplots(n_subplots, 1, figsize=(10, 10), sharex=True)
     
-    # Define colors and styles - Nature style
-    chla_color = '#E31A1C'  # Nature red
-    depth_color = '#1F78B4'  # Nature blue
-    littoral_color = '#666666'  # Nature grey
+    # Define colors and styles
+    chla_color = '#E31A1C'  # Red
+    depth_color = '#1F78B4'  # Blue
+    littoral_color = '#666666'  # Grey
     littoral_style = '--'
     littoral_alpha = 0.8
     
@@ -160,7 +160,7 @@ def create_transectional_figure(transections):
     axes[0].legend(handles=legend_elements, loc='upper right', 
                    frameon=False, fontsize=13, labelspacing=1.2)
     
-    # Adjust layout - Nature style
+    # Adjust layout
     plt.tight_layout()
     plt.subplots_adjust(top=0.95, hspace=0.25)
     

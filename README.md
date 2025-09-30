@@ -80,9 +80,9 @@ Each script in the `src/` directory generates specific figures for the manuscrip
 - **SouthNorthPelagicComparison_Fig7.py**: Compares south-north pelagic patterns (Figure 7)
   - Output: `SouthNorthPelagicComparison_Fig7.png`
 - **TransectionalOverlay_Fig8.py**: Generates transectional overlay between Chl-a and bathymetry (Figure 8)
-  - **Features**: Nature journal style visualization of five transects (I, II, III, IV-1, IV-2) with dual y-axes
+  - **Features**: Professional visualization of five transects (I, II, III, IV-1, IV-2) with dual y-axes
   - **Methods**: Chl-a concentration (red line) and water depth (blue line) with littoral zone boundaries at 2m depth
-  - **Styling**: Professional Nature journal formatting with Arial fonts, optimized colors, and clean layout
+  - **Styling**: Professional formatting with Arial fonts, optimized colors, and clean layout
   - **Output**: `TransectionalOverlay_Fig8.png`
 
 Example:
