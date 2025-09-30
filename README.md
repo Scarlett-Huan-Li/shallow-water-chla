@@ -17,6 +17,7 @@ shallow-water-chla/
 │   ├── MonthlyCenterlineComparison_Fig3.py
 │   ├── SpatioTemporalAsynchrony_Fig4.py
 │   ├── MonthlyCenterlineFitting_FigS4_Fig5.py
+│   ├── MonthlyCenterlineFitting_singleMonth_Fig5.py
 │   ├── SouthNorthPelagicRatio_Fig6.py
 │   └── SouthNorthPelagicComparison_Fig7.py
 ├── figures/                  # Generated figures (PNG format)
@@ -64,6 +65,10 @@ Each script in the `src/` directory generates specific figures for the manuscrip
   - Output: `SpatioTemporalAsynchrony_Fig4.png`
 - **MonthlyCenterlineFitting_FigS4_Fig5.py**: Performs curve fitting analysis (Figure 5) and creates boxplots (Figure S4)
   - Output: `MonthlyCenterlineFitting_Fig5.png` and `MonthlyCenterlineFitting_FigS4.png`
+- **MonthlyCenterlineFitting_singleMonth_Fig5.py**: Generates single curve fitting plot for Figure 5 left subplot
+  - **Features**: Modular design with multiple regression models (Linear, Logarithmic, Polynomial, Exponential)
+  - **Methods**: Curve fitting analysis for July 2015-2023 data with R² and RMSE calculations
+  - **Output**: `SingleCurveFitting_Fig5_left.png`
 - **SouthNorthPelagicRatio_Fig6.py**: Analyzes south-north pelagic ratios (Figure 6)
   - Output: `SouthNorthPelagicRatio_Fig6.png`
 - **SouthNorthPelagicComparison_Fig7.py**: Compares south-north pelagic patterns (Figure 7)
@@ -129,6 +134,13 @@ The repository features well-organized, modular code designed for scientific rep
 - **Function-based Architecture**: Each major operation is a separate, testable function
 - **Professional Standards**: Follows Python best practices and scientific coding conventions
 - **Reproducibility**: Clear execution flow with `if __name__ == "__main__":` pattern
+
+### **Single Curve Fitting Script (MonthlyCenterlineFitting_singleMonth_Fig5.py)**
+- **Refactored Design**: Clean, modular structure aligned with project conventions
+- **Multiple Models**: Implements Linear, Logarithmic, Polynomial (degree 2), and Exponential fitting
+- **Statistical Metrics**: Calculates R² and RMSE for model comparison
+- **Professional Output**: High-quality figure generation with proper equation formatting
+- **Project Integration**: Uses consistent file paths, styling, and documentation standards
 
 ## 🤝 Contributing
 

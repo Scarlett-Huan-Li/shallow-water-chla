@@ -5,7 +5,7 @@ import seaborn as sns
 from scipy import stats
 import os
 from matplotlib.patches import Rectangle
-
+plt.rcParams['savefig.dpi'] = 300
 # Nature-style: clean, minimalist, colorblind-friendly, with balanced font and line sizes
 sns.set_theme(
     style="whitegrid",
@@ -79,7 +79,7 @@ for idx, (year, ax) in enumerate(zip(years_to_plot, axes)):
     if idx > 1:
         ax.set_xlabel('Distance (km)')
     if idx % 2 == 0:
-        ax.set_ylabel('Chl-a (μg/L)')
+        ax.set_ylabel('Chl-a (μg/L)', fontstyle='italic')
     ax.set_xlim(-5, 80)  # Start x from less than 0
     ax.set_ylim(3, 80 if idx == 0 else 37)
     ax.tick_params(axis='both', which='major', length=5, width=1)

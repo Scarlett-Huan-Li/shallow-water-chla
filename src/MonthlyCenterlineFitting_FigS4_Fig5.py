@@ -9,6 +9,8 @@ from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
 import os
 
+plt.rcParams['savefig.dpi'] = 300
+
 # Use relative path for data directory
 filePath = os.path.join(os.path.dirname(__file__), "..", "data")
 figuresPath = os.path.join(os.path.dirname(__file__), "..", "figures")
@@ -198,7 +200,7 @@ for i, decade in enumerate(decades):
         axes[i, j].tick_params(axis='both', labelsize=12)  
 
 # Shrink the gaps between columns
-plt.subplots_adjust(wspace=0.1, hspace=0.15)
+plt.subplots_adjust(wspace=0, hspace=0.15)
 
 # Save the fitting analysis figure
 plt.savefig(os.path.join(figuresPath, 'MonthlyCenterlineFitting_FigS4.png'), 
@@ -251,9 +253,14 @@ rmse_df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in rmse_data.items()]))
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 5))
 
 # R-squared boxplot
-sns.boxplot(data=r2_df, ax=ax1, palette="Set2")
-ax1.set_title('R²', fontsize=12)
-ax1.grid(True)
+sns.boxplot(data=r2_df, ax=ax1, palette="Set2", linewidth=2)
+ax1.set_title('R²', fontsize=14, fontweight='bold')
+ax1.grid(True, linewidth=1.5)
+ax1.tick_params(axis='both', which='major', length=6, width=2, labelsize=12)
+ax1.spines['bottom'].set_linewidth(2)
+ax1.spines['left'].set_linewidth(2)
+ax1.spines['top'].set_linewidth(2)
+ax1.spines['right'].set_linewidth(2)
 # Add significance asterisks for R² over the upper whisker
 for i in range(len(r2_df.columns)):
     q1 = r2_df.iloc[:, i].quantile(0.25)
@@ -265,12 +272,17 @@ for i in range(len(r2_df.columns)):
     non_outliers = r2_df.iloc[:, i][r2_df.iloc[:, i] <= upper_whisker]
     max_non_outlier = non_outliers.max()
     
-    ax1.text(i, max_non_outlier-0.003, '***', ha='center', va='bottom', fontsize=12)
+    ax1.text(i, max_non_outlier-0.003, '***', ha='center', va='bottom', fontsize=14, fontweight='bold')
 
 # RMSE boxplot
-sns.boxplot(data=rmse_df, ax=ax2, palette="Set2")
-ax2.set_title('RMSE', fontsize=12)
-ax2.grid(True)
+sns.boxplot(data=rmse_df, ax=ax2, palette="Set2", linewidth=2)
+ax2.set_title('RMSE', fontsize=14, fontweight='bold')
+ax2.grid(True, linewidth=1.5)
+ax2.tick_params(axis='both', which='major', length=6, width=2, labelsize=12)
+ax2.spines['bottom'].set_linewidth(2)
+ax2.spines['left'].set_linewidth(2)
+ax2.spines['top'].set_linewidth(2)
+ax2.spines['right'].set_linewidth(2)
 for i in range(len(rmse_df.columns)):
     q1 = rmse_df.iloc[:, i].quantile(0.25)
     q3 = rmse_df.iloc[:, i].quantile(0.75)
@@ -281,7 +293,7 @@ for i in range(len(rmse_df.columns)):
     non_outliers = rmse_df.iloc[:, i][rmse_df.iloc[:, i] <= upper_whisker]
     max_non_outlier = non_outliers.max()
     
-    ax2.text(i, max_non_outlier-0.05, '***', ha='center', va='bottom', fontsize=12)
+    ax2.text(i, max_non_outlier-0.05, '***', ha='center', va='bottom', fontsize=14, fontweight='bold')
 
 # Adjust layout
 plt.tight_layout()
