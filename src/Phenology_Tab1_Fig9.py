@@ -41,6 +41,8 @@ poly_order = 3
 uncert_window = 20
 num_bootstrap_samples = 1000
 
+plt.rcParams['savefig.dpi'] = 300
+
 # ============================================== DATA LOADING ==============================================
 def load_data():
     """Load and preprocess the Landsat data."""
@@ -327,7 +329,7 @@ def create_summary_plot(results_df):
     
     basin_colors = ['#0000FF', '#22B14C', '#9E003A', '#FF8C32', '#A2DBF6']
     
-    fig, axs = plt.subplots(2, 2, figsize=(8, 6))
+    fig, axs = plt.subplots(2, 2, figsize=(8, 5))
     param_names = ['peak_doy', 'sos', 'amplitude', 'auc']
     titles = ['Peak DOY', 'Start of Season (SOS)', 'Amplitude', 'AUC']
     subplot_labels = ['a)', 'b)', 'c)', 'd)']

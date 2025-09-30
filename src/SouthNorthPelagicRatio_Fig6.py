@@ -21,8 +21,8 @@ mpl.rcParams['legend.fontsize'] = 11
 mpl.rcParams['axes.linewidth'] = 1.2
 mpl.rcParams['xtick.direction'] = 'out'
 mpl.rcParams['ytick.direction'] = 'out'
-mpl.rcParams['savefig.dpi'] = 200
-mpl.rcParams['figure.dpi'] = 200
+mpl.rcParams['savefig.dpi'] = 300
+mpl.rcParams['figure.dpi'] = 300
 
 # Use relative path for data directory
 filePath = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -58,7 +58,7 @@ for i, coast_region in enumerate(['north_coast_percentage', 'south_coast_percent
 sns.set(style="white", palette="colorblind")
 
 # Set up subplots
-fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 5), sharey=True)
+fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 4), sharey=True)
 
 flierprops = dict(markerfacecolor='gray', markeredgecolor='none', alpha=0.5, markersize=3)
 
@@ -90,7 +90,7 @@ for ax in axes:
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_linewidth(1.2)
     ax.spines['bottom'].set_linewidth(1.2)
-    ax.grid(False)
+    ax.grid(True, axis='y', color='gray', linestyle='-', alpha=0.3, linewidth=0.5)
     ax.set_facecolor('white')
     ax.tick_params(axis='both', which='both', length=5, width=1.2)
 

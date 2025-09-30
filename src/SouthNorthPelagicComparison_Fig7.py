@@ -29,7 +29,8 @@ plt.rcParams.update({
     'ytick.labelsize': 11,
     'legend.fontsize': 11,
     'font.family': 'sans-serif',
-    'font.sans-serif': ['Arial']
+    'font.sans-serif': ['Arial'],
+    'savefig.dpi': 300
 })
 
 basin_lines = [-5, 7, 21, 53]
@@ -40,7 +41,7 @@ series_names = ['north coast', 'south coast', 'pelagic']
 series_colors = ['#0072B2', '#D55E00', '#009E73']  # blue, orange, green (colorblind-friendly)
 line_styles = ['-', '-', '-']
 
-fig, axes = plt.subplots(2, 2, figsize=(12, 8), sharex=True, sharey=False, dpi=200)
+fig, axes = plt.subplots(2, 2, figsize=(12, 6), sharex=True, sharey=False, dpi=200)
 axes = axes.flatten()
 
 for i, (year, ax) in enumerate(zip(years, axes)):
@@ -61,7 +62,7 @@ for i, (year, ax) in enumerate(zip(years, axes)):
         ax.set_xlabel('Distance (km)')
         ax.set_ylim(2, 45)
     if i % 2 == 0:
-        ax.set_ylabel('Chl-a (μg/L)')
+        ax.set_ylabel('Chl-a (μg/L)', style='italic')
     ax.set_xlim(-5, 80)
     ax.tick_params(axis='both', which='major', length=5, width=1)
     ax.spines['top'].set_visible(False)

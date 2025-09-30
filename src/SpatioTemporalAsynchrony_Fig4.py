@@ -72,7 +72,7 @@ ax.set_ylabel('Month', fontsize=16, fontweight='bold')
 ax.set_xlabel('Distance (km)', fontsize=16, fontweight='bold')
 ax.set_yticks([7, 8, 9])
 ax.set_yticklabels(['Jul', 'Aug', 'Sep'])
-ax.set_title('Chl-a Asynchrony (μg/L)', fontsize=18, fontweight='bold', pad=12)
+ax.set_title('$\mathit{Chl{-}a}$ Asynchrony (μg/L)', fontsize=18, fontweight='bold', pad=12)
 
 # Remove top and right spines
 ax.spines['top'].set_visible(False)
@@ -82,7 +82,7 @@ ax.spines['right'].set_visible(False)
 diff = pivot[9] - pivot[8]  # September minus August
 ax2 = ax.twinx()
 ax2.plot(pivot.index, diff, marker='o', color='black', linewidth=2, label='Sep - Aug')
-ax2.set_ylabel('Chl-a (Sep - Aug)', fontsize=16, fontweight='bold', color='black', 
+ax2.set_ylabel('$\mathit{Chl{-}a}$ (Sep - Aug)', fontsize=16, fontweight='bold', color='black', 
                rotation=-90, labelpad=11)
 ax2.tick_params(axis='y', labelcolor='black', labelsize=14)
 ax2.spines['top'].set_visible(False)
