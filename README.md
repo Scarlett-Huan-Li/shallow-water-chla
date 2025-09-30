@@ -11,7 +11,12 @@ shallow-water-chla/
 ├── run_all_analyses.py       # Script to run all analyses
 ├── data/                     # Input data files
 │   ├── Landsat_1984_2024_stations.csv
-│   └── Centerline_4decades.csv
+│   ├── Centerline_4decades.csv
+│   ├── Transection_I.csv
+│   ├── Transection_II.csv
+│   ├── Transection_III.csv
+│   ├── Transection_IV-1.csv
+│   └── Transection_IV-2.csv
 ├── src/                      # Analysis scripts
 │   ├── Phenology_Tab1_Fig9.py
 │   ├── MonthlyCenterlineComparison_Fig3.py
@@ -19,7 +24,8 @@ shallow-water-chla/
 │   ├── MonthlyCenterlineFitting_FigS4_Fig5.py
 │   ├── MonthlyCenterlineFitting_singleMonth_Fig5.py
 │   ├── SouthNorthPelagicRatio_Fig6.py
-│   └── SouthNorthPelagicComparison_Fig7.py
+│   ├── SouthNorthPelagicComparison_Fig7.py
+│   └── TransectionalOverlay_Fig8.py
 ├── figures/                  # Generated figures (PNG format)
 └── docs/                     # Documentation
     └── manuscript_info.md
@@ -73,6 +79,11 @@ Each script in the `src/` directory generates specific figures for the manuscrip
   - Output: `SouthNorthPelagicRatio_Fig6.png`
 - **SouthNorthPelagicComparison_Fig7.py**: Compares south-north pelagic patterns (Figure 7)
   - Output: `SouthNorthPelagicComparison_Fig7.png`
+- **TransectionalOverlay_Fig8.py**: Generates transectional overlay between Chl-a and bathymetry (Figure 8)
+  - **Features**: Nature journal style visualization of five transects (I, II, III, IV-1, IV-2) with dual y-axes
+  - **Methods**: Chl-a concentration (red line) and water depth (blue line) with littoral zone boundaries at 2m depth
+  - **Styling**: Professional Nature journal formatting with Arial fonts, optimized colors, and clean layout
+  - **Output**: `TransectionalOverlay_Fig8.png`
 
 Example:
 ```bash
