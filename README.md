@@ -62,8 +62,8 @@ This will run all scripts in the correct order and generate all figures.
 Each script in the `src/` directory generates specific figures for the manuscript and automatically saves them to the `figures/` folder in PNG format (300 DPI):
 
 - **Phenology_Tab1_Fig9.py**: Generates phenology analysis and Table 1, Figure 9
-  - **Features**: Modular code structure with statistical trend analysis (linear regression, weighted regression, Mann-Kendall test)
-  - **Methods**: Peak DOY temporal trend testing across four decades with outlier correction
+  - **Features**: Modular code structure with statistical trend analysis (Mann-Kendall test)
+  - **Methods**: Peak DOY temporal trend testing across four decades with outlier correction using non-parametric Mann-Kendall test with Sen's slope
   - **Output**: `Phenology_Tab1_Fig9.png`
 - **MonthlyCenterlineComparison_Fig3.py**: Creates monthly centerline comparison (Figure 3)
   - Output: `MonthlyCenterlineComparison_Fig3.png`
@@ -123,8 +123,6 @@ The analysis includes:
 - **Spatial Patterns**: Basin-specific analysis (Keszthely, Szigliget, Zanka, Tihany, Bfuzfo)
 - **Statistical Fitting**: Multiple regression models for temporal patterns
 - **Statistical Testing**: 
-  - Standard linear regression for trend detection
-  - Weighted linear regression accounting for measurement uncertainty
   - Mann-Kendall test with Sen's slope for non-parametric trend analysis
   - Outlier detection and correction for robust results
 

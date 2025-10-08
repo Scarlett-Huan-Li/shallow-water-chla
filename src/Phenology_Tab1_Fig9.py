@@ -6,9 +6,7 @@ This script performs statistical analysis of peak Day of Year (DOY) trends acros
 (1984-2023) for chlorophyll-a concentration in Lake Balaton. The analysis includes:
 
 1. Data preprocessing and outlier correction
-2. Standard linear regression (using decade means)
-3. Weighted linear regression (using individual measurements with uncertainty)
-4. Mann-Kendall test with Sen's slope (non-parametric)
+2. Mann-Kendall test with Sen's slope (non-parametric)
 
 The script is designed for scientific replication and includes clear documentation
 of all statistical methods and assumptions.
@@ -17,13 +15,10 @@ of all statistical methods and assumptions.
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 import os
-from scipy.interpolate import make_interp_spline, CubicSpline, interp1d
-from scipy.signal import argrelextrema, savgol_filter
+from scipy.interpolate import interp1d
 from scipy import stats
 from scipy.stats import kendalltau
-from scipy.optimize import curve_fit
 
 # ============================================== CONFIGURATION ==============================================
 # Use relative path for data directory
@@ -95,7 +90,7 @@ def process_basin_data(basin_data, window_size, uncert_window, num_bootstrap_sam
     # Compute AUC (area under curve from SOS to end of October)
     if sos is not None:
         auc_mask = (data_may_oct['doy'] >= sos) & (data_may_oct['doy'] <= 304)
-        auc = np.trapezoid(data_may_oct[auc_mask]['chla_avg'], data_may_oct[auc_mask]['doy'])
+        auc = np.trapz(data_may_oct[auc_mask]['chla_avg'], data_may_oct[auc_mask]['doy'])
     else:
         auc = None
 
@@ -196,77 +191,9 @@ def perform_statistical_analysis(results_df):
             mean_doy = decade_data.mean()
             mean_doy_values.append(mean_doy)
     
-    # Method 1: Standard Linear Regression
+    # Mann-Kendall Test with Sen's Slope
     if len(mean_doy_values) == len(years):
-        print(f"--- METHOD 1: STANDARD LINEAR REGRESSION ---")
-        slope, intercept, r_value, p_value_reg, std_err = stats.linregress(years, mean_doy_values)
-        
-        print(f"Slope: {slope:.3f} DOY/year")
-        print(f"R^2: {r_value**2:.3f}")
-        print(f"p-value: {p_value_reg:.6f}")
-        
-        if p_value_reg < 0.05:
-            trend_direction = "advancing" if slope < 0 else "delaying"
-            print(f"Result: SIGNIFICANT temporal trend (p < 0.05)")
-            print(f"Peak DOY is {trend_direction} by {abs(slope):.2f} days per year")
-        else:
-            print(f"Result: NO significant temporal trend (p ≥ 0.05)")
-    
-    # Method 2: Weighted Linear Regression
-    all_years = []
-    all_doys = []
-    all_weights = []
-    
-    for _, row in results_df_filtered.iterrows():
-        decade = row['decade']
-        doy = row['peak_doy']
-        std2 = row['std2']
-        
-        if pd.notna(doy) and pd.notna(std2):
-            mid_year = [1989, 1999, 2009, 2019][decade-1]
-            all_years.append(mid_year)
-            all_doys.append(doy)
-            all_weights.append(1.0 / (std2**2))
-    
-    if len(all_years) >= 4:
-        print(f"\n--- METHOD 2: WEIGHTED LINEAR REGRESSION (using individual measurements with uncertainty) ---")
-        
-        def linear_func(x, a, b):
-            return a * x + b
-        
-        years_array = np.array(all_years)
-        doys_array = np.array(all_doys)
-        weights_array = np.array(all_weights)
-        
-        popt, pcov = curve_fit(linear_func, years_array, doys_array, sigma=1/np.sqrt(weights_array), absolute_sigma=True)
-        slope_weighted, intercept_weighted = popt
-        
-        y_pred = linear_func(years_array, slope_weighted, intercept_weighted)
-        ss_res = np.sum(weights_array * (doys_array - y_pred)**2)
-        ss_tot = np.sum(weights_array * (doys_array - np.average(doys_array, weights=weights_array))**2)
-        r_squared_weighted = 1 - (ss_res / ss_tot)
-        
-        n = len(all_years)
-        dof = n - 2
-        slope_std = np.sqrt(pcov[0, 0])
-        t_stat = slope_weighted / slope_std
-        p_value_weighted = 2 * (1 - stats.t.cdf(abs(t_stat), dof))
-        
-        print(f"Slope: {slope_weighted:.3f} DOY/year")
-        print(f"R^2: {r_squared_weighted:.3f}")
-        print(f"p-value: {p_value_weighted:.6f}")
-        print(f"Number of measurements: {n}")
-        
-        if p_value_weighted < 0.05:
-            trend_direction = "advancing" if slope_weighted < 0 else "delaying"
-            print(f"Result: SIGNIFICANT temporal trend (p < 0.05)")
-            print(f"Peak DOY is {trend_direction} by {abs(slope_weighted):.2f} days per year")
-        else:
-            print(f"Result: NO significant temporal trend (p ≥ 0.05)")
-    
-    # Method 3: Mann-Kendall Test with Sen's Slope
-    if len(mean_doy_values) == len(years):
-        print(f"\n--- METHOD 3: MANN-KENDALL TEST WITH SEN'S SLOPE ---")
+        print(f"\n--- MANN-KENDALL TEST WITH SEN'S SLOPE ---")
         tau, p_mk = kendalltau(years, mean_doy_values)
         
         def sens_slope(x, y):
