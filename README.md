@@ -126,12 +126,12 @@ The analysis includes:
   - Mann-Kendall test with Sen's slope for non-parametric trend analysis
   - Outlier detection and correction for robust results
 
-## 📈 Key Findings
+## 📈 Highlights
 
-1. **Spatial asynchrony across lake basins exists for the intra- and inter-annual change of Chl-a.**
-2. **The littoral/pelagic ratio of the maximum optical Chl-a remains between 1.3 and 2.8.**
-3. **Peak Chl-a timing advanced by 5 days/decade, with start of season advancing by 10 days.**
-4. **Bloom intensity decreased in western basins but remained stable in eastern regions.**
+1. **Transferable analytical framework for shallow lakes using long-term satellite dataset.**
+2. **Exponential models reveal constant Chl-a gradients (k≈0.05 km⁻¹) across decades.**
+3. **Littoral zones consistently show 1.3-2.8× higher Chl-a than pelagic zones across basins.**
+4. **Over 40 years, peak Chl-a advanced by 20 days and seasonal onset by 10 days.**
 
 ## 🤝 Contributing
 
