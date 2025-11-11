@@ -19,7 +19,13 @@ https://doi.org/10.1016/j.watres.2025.124925
 124925
 
 ## Abstract
-This study presents a comprehensive analysis of chlorophyll-a dynamics in shallow lakes using four decades of satellite observations, revealing climate-driven shifts and spatial heterogeneity in phytoplankton phenology.
+Shallow lakes worldwide face escalating pressures from eutrophication and climate change, yet comprehensive monitoring of Chlorophyll-a (Chl-a) spatiotemporal dynamics remains challenging due to the high costs and logistical constraints of traditional sampling approaches across large, heterogeneous water bodies. Lake Balaton, a large shallow lake system (80 km long, 7 km wide, 3.7 m mean depth) in Central Europe, exemplifies these monitoring challenges while serving as a representative system for understanding climate-driven changes in temperate shallow lakes. Despite decades of in-situ measurements along the lake's centerline, fine-scale spatial patterns and long-term temporal trends in Chl-a remain poorly characterized due to sparse samplings. Using a machine-learning-derived optical remote sensing dataset (1984-2023) at 30 m spatial resolution, we conducted comprehensive spatiotemporal analysis of Chl-a dynamics and examined relationships with bathymetry, nutrient loading, and light availability features. Our analysis reveals an exponential west-to-east decline in Chl-a concentrations with distance from the primary nutrient source, characterized by a consistent decay rate of 0.04-0.06 km⁻¹ (typically 0.05 km⁻¹). Littoral zones consistently exhibited 1.3-2.8 times higher optical Chl-a concentrations than pelagic zones, reflecting integrated signals from phytoplankton, benthic algae, and submerged macrophytes. Phenological analysis demonstrated significant climate-driven shifts, with peak Chl-a timing advancing by 20 days over the study period and growing season onset occurring 10 days earlier, consistent with regional warming trends. These findings provide a transferable framework for satellite-based water quality monitoring in shallow lake systems and demonstrate the critical importance of accounting for spatial heterogeneity and climate-driven temporal shifts in lake management strategies globally.
+
+## Graphical Abstract
+
+![Graphical Abstract](../figures/Graphic%20Abstract.jpg)
+
+*Graphical abstract: Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics*
 
 ## Key Figures and Tables
 

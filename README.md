@@ -6,6 +6,12 @@ This repository contains the code and data for analyzing chlorophyll-a phenology
 
 **Author:** [Huan Li](https://geolab.live/) | **Published in:** *Water Research* (2025) | [DOI: 10.1016/j.watres.2025.124925](https://doi.org/10.1016/j.watres.2025.124925)
 
+## 📊 Graphical Abstract
+
+![Graphical Abstract](figures/Graphic%20Abstract.jpg)
+
+*Graphical abstract: Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics*
+
 ## 📁 Repository Structure
 
 ```
