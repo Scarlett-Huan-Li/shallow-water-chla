@@ -1,6 +1,10 @@
 # Shallow Water Chlorophyll-a Analysis
 
-This repository contains the code and data for analyzing chlorophyll-a phenology in Lake Balaton, Hungary, based on Landsat satellite data from 1984-2024.
+> **Reproducible analysis code and data for:** Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics
+
+This repository contains the code and data for analyzing chlorophyll-a phenology in Lake Balaton, Hungary, based on Landsat satellite data from 1984-2024. The analysis reveals climate-driven shifts and spatial heterogeneity in shallow lake chlorophyll-a dynamics over four decades.
+
+**Author:** [Huan Li](https://geolab.live/) | **Published in:** *Water Research* (2025) | [DOI: 10.1016/j.watres.2025.124925](https://doi.org/10.1016/j.watres.2025.124925)
 
 ## 📁 Repository Structure
 
@@ -137,6 +141,10 @@ The analysis includes:
 
 This repository is associated with a scientific manuscript. For questions or collaboration, please contact the corresponding author.
 
+**Corresponding Author:** [Huan Li](https://geolab.live/)  
+**Personal Website:** https://geolab.live/  
+**Repository:** https://github.com/Scarlett-Huan-Li/shallow-water-chla
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -166,3 +174,14 @@ If you use this code or data in your research, please cite:
 - **Li, H., Somogyi, B. and Tóth, V.** (2024) Exploring spatiotemporal features of surface water temperature for Lake Balaton in the 21st century based on Google Earth Engine. *Journal of Hydrology* 640, 131672.
 
 - **Li, H., Sun, J., Zhou, Q., Sojka, M., Ptak, M., Luo, Y., Wu, S., Zhu, S. and Tóth, V.R.** (2024) 150-year daily data (1870–2021) in lakes and rivers reveals intensifying surface water warming and heatwaves in the Pannonian Ecoregion (Hungary). *Journal of Hydrology: Regional Studies* 56, 101985.
+
+---
+
+## 👤 Author
+
+**Huan Li**  
+Senior Research Fellow, HUN-REN Balaton Limnological Research Institute
+
+- 🌐 **Personal Website**: [https://geolab.live/](https://geolab.live/)
+- 📧 **Contact**: For questions about this repository, please visit [https://geolab.live/](https://geolab.live/)
+- 🔬 **Research Focus**: Spatio-temporal data analysis, remote sensing, GIS, environmental science, inland water monitoring, climate change

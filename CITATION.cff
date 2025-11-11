@@ -8,6 +8,7 @@ authors:
   - family-names: Li
     given-names: Huan
     orcid: https://orcid.org/0000-0000-0000-0000
+    website: https://geolab.live/
   - family-names: Somogyi
     given-names: Boglárka
   - family-names: Chen
@@ -21,6 +22,7 @@ authors:
   - family-names: Tóth
     given-names: Viktor R.
 repository-code: https://github.com/Scarlett-Huan-Li/shallow-water-chla
+url: https://geolab.live/
 license: MIT
 keywords:
   - chlorophyll-a

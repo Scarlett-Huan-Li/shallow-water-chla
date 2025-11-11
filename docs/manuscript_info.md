@@ -113,7 +113,8 @@ python SouthNorthPelagicComparison_Fig7.py
 ## Contact Information
 
 For questions about the code or data, please contact:
-- **Corresponding Author**: Huan Li
+- **Corresponding Author**: [Huan Li](https://geolab.live/)
+- **Personal Website**: https://geolab.live/
 - **Repository**: https://github.com/Scarlett-Huan-Li/shallow-water-chla
 
 ## Version Information
