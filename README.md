@@ -141,6 +141,24 @@ This repository is associated with a scientific manuscript. For questions or col
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 📖 Citation
+
+If you use this code or data in your research, please cite:
+
+**Li, H., Somogyi, B., Chen, X., Wan, W., Duan, Z., Woolway, R.I., and Tóth, V.R.** (2025) Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics. *Water Research* 124925. doi: <https://doi.org/10.1016/j.watres.2025.124925>
+
+### BibTeX
+```bibtex
+@article{li2025four,
+  title={Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics},
+  author={Li, Huan and Somogyi, Bogl{\'a}rka and Chen, Xiaona and Wan, Wei and Duan, Zheng and Woolway, R. Iestyn and T{\'o}th, Viktor R.},
+  journal={Water Research},
+  pages={124925},
+  year={2025},
+  doi={https://doi.org/10.1016/j.watres.2025.124925}
+}
+```
+
 ## 🔗 Related Publications
 
 - **Li, H., Somogyi, B., Chen, X., Luo, Z., Blix, K., Wu, S., Duan, Z. and Tóth, V.R.** (2025) Leveraging Landsat and Google Earth Engine for long-term chlorophyll-a monitoring: A case study of Lake Balaton's water quality. *Ecological Informatics* 90, 103245.
@@ -148,7 +166,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Li, H., Somogyi, B. and Tóth, V.** (2024) Exploring spatiotemporal features of surface water temperature for Lake Balaton in the 21st century based on Google Earth Engine. *Journal of Hydrology* 640, 131672.
 
 - **Li, H., Sun, J., Zhou, Q., Sojka, M., Ptak, M., Luo, Y., Wu, S., Zhu, S. and Tóth, V.R.** (2024) 150-year daily data (1870–2021) in lakes and rivers reveals intensifying surface water warming and heatwaves in the Pannonian Ecoregion (Hungary). *Journal of Hydrology: Regional Studies* 56, 101985.
-
----
-
-**Note**: This repository contains the complete reproducible analysis for the manuscript "Satellite-based Monitoring Reveals Climate-driven Phenological Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics: A Four-Decade Analysis". 

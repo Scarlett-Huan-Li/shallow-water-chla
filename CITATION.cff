@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics"
+version: 1.0.0
+doi: 10.1016/j.watres.2025.124925
+date-released: 2025-01-01
+authors:
+  - family-names: Li
+    given-names: Huan
+    orcid: https://orcid.org/0000-0000-0000-0000
+  - family-names: Somogyi
+    given-names: Boglárka
+  - family-names: Chen
+    given-names: Xiaona
+  - family-names: Wan
+    given-names: Wei
+  - family-names: Duan
+    given-names: Zheng
+  - family-names: Woolway
+    given-names: R. Iestyn
+  - family-names: Tóth
+    given-names: Viktor R.
+repository-code: https://github.com/Scarlett-Huan-Li/shallow-water-chla
+license: MIT
+keywords:
+  - chlorophyll-a
+  - satellite observations
+  - shallow lakes
+  - climate change
+  - phenology
+  - Landsat
+  - Lake Balaton
+  - water quality
+abstract: "This repository contains the code and data for analyzing chlorophyll-a phenology in shallow lakes using four decades of satellite observations, revealing climate-driven shifts and spatial heterogeneity in phytoplankton dynamics."
+preferred-citation:
+  type: article
+  title: "Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics"
+  authors:
+    - family-names: Li
+      given-names: Huan
+    - family-names: Somogyi
+      given-names: Boglárka
+    - family-names: Chen
+      given-names: Xiaona
+    - family-names: Wan
+      given-names: Wei
+    - family-names: Duan
+      given-names: Zheng
+    - family-names: Woolway
+      given-names: R. Iestyn
+    - family-names: Tóth
+      given-names: Viktor R.
+  journal: "Water Research"
+  year: 2025
+  pages: 124925
+  doi: 10.1016/j.watres.2025.124925
+

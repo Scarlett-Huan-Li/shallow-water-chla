@@ -1,16 +1,25 @@
 # Manuscript Information
 
 ## Title
-[Your manuscript title here]
+Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics
 
 ## Authors
-[Author list]
+Li, Huan; Somogyi, Boglárka; Chen, Xiaona; Wan, Wei; Duan, Zheng; Woolway, R. Iestyn; Tóth, Viktor R.
 
 ## Journal
-[Target journal name]
+Water Research
+
+## Publication Status
+✅ **Published Online** (2025)
+
+## DOI
+https://doi.org/10.1016/j.watres.2025.124925
+
+## Article Number
+124925
 
 ## Abstract
-[Brief description of the study]
+This study presents a comprehensive analysis of chlorophyll-a dynamics in shallow lakes using four decades of satellite observations, revealing climate-driven shifts and spatial heterogeneity in phytoplankton phenology.
 
 ## Key Figures and Tables
 
@@ -97,15 +106,19 @@ python SouthNorthPelagicComparison_Fig7.py
 
 **Note**: All figures are automatically saved to the `figures/` directory in PNG format (300 DPI) for publication quality.
 
+## Citation
+
+**Li, H., Somogyi, B., Chen, X., Wan, W., Duan, Z., Woolway, R.I., and Tóth, V.R.** (2025) Four Decades of Satellite Observations Reveal Climate-Driven Shifts and Spatial Heterogeneity in Shallow Lake Chlorophyll-a Dynamics. *Water Research* 124925. doi: https://doi.org/10.1016/j.watres.2025.124925
+
 ## Contact Information
 
 For questions about the code or data, please contact:
-- **Corresponding Author**: [Your name and email]
-- **Repository**: [GitHub repository URL]
+- **Corresponding Author**: Huan Li
+- **Repository**: https://github.com/Scarlett-Huan-Li/shallow-water-chla
 
 ## Version Information
 
 - **Code Version**: 1.0
 - **Data Version**: 1.0
-- **Last Updated**: [Date]
+- **Last Updated**: 2025
 - **Python Version**: 3.8+ 
