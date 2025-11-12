@@ -76,8 +76,11 @@ Shallow lakes worldwide face escalating pressures from eutrophication and climat
 
 ### Statistical Analysis
 - **Bootstrap Uncertainty**: 1000 bootstrap samples for uncertainty estimation
-- **Smoothing**: 30-day rolling window average and Savitzky-Golay filtering
+- **Smoothing**: 30-day rolling window average
 - **Curve Fitting**: Multiple regression models (linear, exponential, power, logarithmic)
+- **Statistical Significance**: Man-kendell test and Sen's slope for trend estimation
+
+## Data Sources
 
 ## Reproducibility
 
