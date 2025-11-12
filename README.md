@@ -36,9 +36,7 @@ shallow-water-chla/
 │   ├── SouthNorthPelagicRatio_Fig6.py
 │   ├── SouthNorthPelagicComparison_Fig7.py
 │   └── TransectionalOverlay_Fig8.py
-├── figures/                  # Generated figures (PNG format)
-└── docs/                     # Documentation
-    └── manuscript_info.md
+└── figures/                  # Generated figures (PNG format)
 ```
 
 ## 🚀 Quick Start
